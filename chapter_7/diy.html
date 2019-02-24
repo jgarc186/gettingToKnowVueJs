@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DIY</title>
+</head>
+<body>
+
+	<div id="app1">
+		<!-- First section to display VueJS -->
+	</div>
+
+	<div id="app2">
+		<!-- Second section to display VueJS -->
+	</div>
+
+	<!-- development version, includes helpful console warnings -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<script type="text/javascript">
+		var sharedData = {
+			devMode: true,
+
+			state: {
+				value: 1
+			}, 
+
+			increaseValue() {
+				if (this.devMode) {
+					// If devMode is set to true, log this message to the console:
+					console.log('increaseValue() called');
+				}
+
+				// Increase state value by one:
+				this.state.value ++;
+			}, // End of inscreaseValue()
+
+			decreaseValue() {
+				if (this.devMode) {
+					// If devMode is set to true, log this message to the console:
+					console.log('decreaseValue() called');
+				}
+
+				// Decrease state value by one:
+				this.state.value --;
+			}, // End of decreaseValue()
+
+			setValue(newValue) {
+				if (this.devMode) {
+					// If devMode is set to true, log this message to the console:
+					console.log('setValue() called with newValue: ', newValue);
+				}
+
+				// Setting new value to state:
+				this.state.value = newValue;
+			} // End of setValue().
+		}; // End of shareDate object.
+
+		var app1 = new Vue({
+			el: '#app1',
+
+			data: {
+				shared: sharedData.state,
+				private: {}
+			},
+
+			template: `
+				<h1>
+					App 1 shared value: {{ shared.value }}
+				</h1>
+			`
+		}); // End of app1 object.
+
+		var app2 = new Vue({
+			el: '#app2',
+
+			data: {
+				shared: sharedData.state,
+				private: {}
+			},
+
+			methods: {
+				increase: function() {
+					sharedData.increaseValue();
+				},
+
+				decrease: function() {
+					sharedData.decreaseValue();
+				},
+
+				reset: function() {
+					sharedData.setValue(1)
+				}
+			},
+
+			template: `
+				<div>
+					<h1>
+						App 2 Shared value: {{ shared.value }}
+					</h1>
+
+					<button v-on:click="increase()">
+						+
+					</button>
+
+					<button v-on:click="decrease()">
+						-
+					</button>
+
+					<button v-on:click="reset()">
+						Reset
+					</button>
+				</div>
+			`
+		}); // End of app2 object.
+
+	</script>
+
+</body>
+</html>
