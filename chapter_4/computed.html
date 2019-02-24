@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Computed</title>
+</head>
+<body>
+
+	<div id="app"></div>
+
+	<!-- development version, includes helpful console warnings -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+
+			data: {
+				bookNameForTemplate: 'Getting to know vue.js',
+				bookNameForMethod: 'Getting to know vue.js',
+				bookNameForComputed: 'Getting to know vue.js',
+				publisher: 'Apress'
+			},
+
+			methods: {
+				getTitleBlurb: function() {
+					console.log('Called: getTitleBlurb');
+					return `${this.bookNameForMethod} by ${this.publisher}`;
+				} // End of getTitleBlurb()
+			},
+
+			computed: {
+				titleBlurb: function() {
+					console.log('Called: titleBlurb');
+					return `${this.bookNameForComputed} by ${this.publisher}`;
+				}
+			},
+
+			template: `
+			<div>
+				<h3>Template based:</h3>
+				<h4>{{ bookNameForTemplate }} by {{ publisher }}</h4>
+
+				<h3>Method based:</h3>
+				<h4>{{ getTitleBlurb() }}</h4>
+
+				<h3>Computed property based:</h3>
+				<h4>{{ titleBlurb }}</h4>
+
+				<label> Template:
+					<input type="text" v-model="bookNameForTemplate" />
+				</label>
+				<br>
+
+				<label>Method
+					<input type="text" v-model="bookNameForMethod" />
+				</label>
+				<br>
+
+				<label>Computed
+					<input type="text" v-model="bookNameForComputed" />
+				</label>
+			</div>
+			`
+		});
+	</script>
+
+</body>
+</html>

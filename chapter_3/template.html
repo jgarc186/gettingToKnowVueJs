@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tempalte</title>
+</head>
+<body>
+
+	<div id="app"></div>
+
+	<!-- production version, optimized for size and speed -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				yes: true,
+				no: false
+			},
+			template: `
+				<div>
+					<template v-if="no">
+						<h1>Don't show this whole section</h1>
+						<p>Because it is forbidden to show it!</p>
+					</template>
+					<template v-if="yes">
+						<h1>Show This Section!</h1>
+						<p>Because it is in the light!</p>
+					</template>
+				</div>
+			`
+		});
+	</script>
+</body>
+</html>

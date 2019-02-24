@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Keys</title>
+</head>
+<body>
+	
+	<div id="app"></div>
+
+	<!-- development version, includes helpful console warnings -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+
+			data: {
+				books: [
+					{
+						title: 'IT',
+						author: 'Stephen King',
+						id: 0,
+						genres: [
+							'horror',
+							'drama'
+						]
+					},
+					{
+						title: 'Pet Sementary',
+						author: 'Stephen King',
+						id: 1,
+						genres: [
+							'horror',
+							'drama'
+						]
+					},
+					{
+						title: 'The Martian',
+						author: 'Andy Weir',
+						id: 2,
+						genres: [
+							'science-fiction',
+							'survival'
+						]
+					},
+					{
+						title: 'Da Vinci Code',
+						author: 'Dan Brown',
+						id: 3,
+						genres: [
+							'science-fiction',
+							'drama'
+						]
+					}
+				] // End of the book Array
+			}, // End of data
+
+			template: `
+				<div>
+					<ul v-for="book in books" :key="book.id">
+
+						{{ resize() }}
+
+						<li>
+							<p>
+								<strong>
+								Id: {{ book.id }}
+								</strong>
+							</p>
+							<p>
+							Title: {{ book.title }}
+							</p>
+							<p>
+							Author: {{ book.author }}
+							</p>
+							<p>
+							genres:
+							<span v-for="(genre, index) in book.genres">
+								{{ genre }}<span v-if="index < book.genres.length - 1">, </span>
+							</span>
+							</p>
+						</li>
+					</ul>
+				</div>
+			`, // End of template
+
+			methods: {
+				horrorFilter: function() {
+					this.books = this.books.filter(book => {
+						return (
+								book.genres.findIndex(genre => {
+									return genre === 'horror';
+								}) >= 0
+							);
+					});
+				}, // End of horrorFilter()
+
+				set: function() {
+					var indexToReplace = 0;
+					var newBook = {
+						title: 'Lost Symbol',
+						author: 'Dan Brown',
+						id: 0,
+						genres: [
+							'drama',
+							'science-fiction'
+						]
+					};
+
+					Vue.set(this.books, indexToReplace, newBook);
+				}, // End of Set()
+
+				splice: function() {
+					var indexToReplace = 0;
+					var newBook = {
+						title: 'Misery',
+						author: 'Stephen King',
+						id: 0,
+						genres: [
+							'horror',
+							'drama'
+						]
+					};
+
+					this.books.splice(indexToReplace, 1, newBook);
+				}, // End of splice()
+
+				resize: function() {
+					// Vue cannot detect
+					this.books.length = 1;
+					// Use splice to resize an array, Vue can detect
+					this.books.splice(1);
+				}
+			} // End of methods
+
+		}); // End of Vue()
+	</script>
+</body>
+</html>

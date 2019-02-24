@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>v-show</title>
+</head>
+<body>
+	<div id="app"></div>
+
+	<!-- production version, optimized for size and speed -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				yes: true,
+				no: false
+			},
+			template: `
+			<div>
+				<label value="first">first:
+				<div v-show="yes">Show</div>
+				<label value="second">second:
+				<div v-show="no">Hidde</div>
+				<label>Third:</label>
+				<div v-show="1 == 1">HERE!</div>
+			</div>
+			`
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Watchers</title>
+</head>
+<body>
+	
+	<div id="app"></div>
+
+	<!-- development version, includes helpful console warnings -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<!-- Axios library -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+
+			data: {
+				searchText: '',
+				results: [],
+				history: {}
+			},
+
+			methods: {
+				search: function() {
+					axios
+						.get(`https://swapi.co/api/starships/?search=${this.searchText}`)
+						.then(response => {
+							this.results = response.data;
+							this.history[this.searchText] = this.results;
+						});
+				} // End of search()
+			},
+
+			watch: {
+				searchText: function(newSearchText, oldSearchText) {
+					if (this.history[newSearchText]) {
+						this.results = this.history[newSearchText];
+					} else {
+						this.search();
+					}
+				}
+			},
+
+			template: `
+				<div>
+					<label>search:</label>
+					<input type="text" v-model="searchText">
+
+					<h5>Results: <small>{{ results.count }}</small></h5>
+					<ul>
+						<li v-for="result in results.results">
+							{{ result.name }}
+						</li>
+					</ul>
+				</div>
+			`
+		});
+	</script>
+
+</body>
+</html>

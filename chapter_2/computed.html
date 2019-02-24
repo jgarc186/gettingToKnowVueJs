@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Computed Properties</title>
+</head>
+<body>
+
+	<!-- Rending the view Vue.js -->
+	<div id="app">
+		Information is here
+	</div>
+
+	<!-- production version, optimized for size and speed -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+	<!-- Vue.js script -->
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				information: 'Hello World!'
+			},
+			template: '<div> {{ textCaps(information) }} </div>',
+			computed: {
+				textCaps: function(info) {
+					return info.toUpperCase();
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>

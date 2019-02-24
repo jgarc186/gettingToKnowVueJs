@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Example</title>
+</head>
+<body>
+
+
+	<div id="app"></div>
+
+	<!-- development version, includes helpful console warnings -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+
+			data: {
+				number: 0,
+				percentage: 0
+			},
+
+			methods: {
+				multiplicationBySix: function(digit, packages) {
+					if (packages == 5) {
+						this.percentage = .10;
+					} else if (packages == 9) {
+						this.percentage = .20;
+					} else if (packages == 14) {
+						this.percentage = .30;
+					} else if (packages == 19) {
+						this.percentage = .35;
+					}
+
+					return digit - (digit * this.percentage);
+				}
+			},
+
+			template: `
+			<div>
+				<label for="grand_total">Gran Total</label>
+				<input v-model.number="number" name="grand_total" type="text">
+				<p>Numero de paquetes recogidos: <?= $total_packages ?></p> 
+				<p>Descuento: {{ percentage * 100 }}%</p> 
+				<p>Gran Total: $ {{ multiplicationBySix(number, <?= $total_packages ?>) }}</p>
+			</div>
+			`
+		});
+	</script>
+
+</body>
+</html>

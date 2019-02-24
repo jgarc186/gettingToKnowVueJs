@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Methods</title>
+</head>
+<body>
+
+	<div id="app">
+		This will get replaced!
+	</div>
+
+	<!-- production version, optimized for size and speed -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				information: 'Hello world!'
+			},
+			template: '<div> {{ textCaps(information) }} </div>',
+			methods: {
+				textCaps: function(info) {
+					return info.toUpperCase();
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>

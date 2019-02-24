@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Returning Objects</title>
+</head>
+<body>
+	
+	<div id="app"></div>
+
+	<!-- development version, includes helpful console warnings -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+
+			data: {
+				book: {
+					author: 'Stephen King',
+					title: 'IT',
+					pages: 1045,
+					id: 0,
+					genres: [
+						'Horror',
+						'Drama'
+					],
+					action: function() {
+						return 'I did an action';
+					}
+				}
+			},
+
+			template: `
+				<div>
+					<ul v-for="(prop, index, key) in book">
+						<li>
+							{{ index }} {{ key }}: {{ prop }}
+						</li>
+						<p v-if="typeof prop == 'function'">{{ prop() }}</p>
+					</ul>
+				</div>
+			`
+		});	
+	</script>
+
+</body>
+</html>

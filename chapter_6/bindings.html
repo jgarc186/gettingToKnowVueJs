@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bindings</title>
+</head>
+<body>
+
+	<div id="app"></div>
+
+	<!-- development version, includes helpful console warnings -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+
+			data: {
+				inputs: {
+					text: '',
+					numberAsString: 0,
+					numberAsNumber: 0,
+					date: '',
+					password: '',
+					checkbox: false,
+					checkboxes: [],
+					radios: '',
+					radiosPreset: 'rollout',
+					radiosDynamic: '',
+					radiousDynamicOptions: [
+						{
+							label: 'Blue',
+							value: 'Light'
+						},
+						{
+							label: 'Red',
+							value: 'Dark'
+						}
+					],
+					file: '',
+					select: '',
+					multiselect: []
+				}
+			},
+
+			template: `
+					<div>
+						<h4>Text</h4>
+						<input type="text" v-model="inputs.text">
+						<p>
+							<strong>
+								Text:
+							</strong>
+							{{ inputs.text }}
+						</p>
+
+						<h4>Number as String</h4>
+						<input type ="number" v-model="inputs.numberAsString" />
+						<p>
+							<strong>Number:</strong>
+						</p>
+						<p>
+							<strong>Typeof numberAsString:</strong> {{ typeof inputs.numberAsString }}
+						</p>
+						<h4>Number as Number:</h4>
+						<input type="number" v-model.number="inputs.numberAsNumber">
+						<p>
+							<strong>Number:</strong> {{ inputs.numberAsNumber }}
+						</p>
+
+						<h4>Date</h4>
+						<input type="date" v-model="inputs.date">
+						<p>
+							<strong>Date:</strong> {{ inputs.date }}
+						</p>
+
+						<h4>Password</h4>
+						<input type="password" v-model="inputs.password">
+						<p>
+							<strong>Password: </strong> {{ inputs.password }}
+						</p>
+
+						<h4>Checkbox</h4>
+						<input type="checkbox" v-model="inputs.checkbox" value="myCHeckBox" id="myCheckBox">
+						<label for="myCheckBox">My Check Box</label>
+						<p>
+							<strong>Checkbox:</strong> {{ inputs.checkbox }}
+						</p>
+
+						<h4>Checkboxes</h4>
+						<input v-model="inputs.checkboxes" type="checkbox" value="eeny" id="eeny" />
+						<label for="eeny">Enny</label>
+						<input v-model="inputs.checkboxes" type="checkbox" value="meeny" id="meeny" />
+						<label for="meeny">Meeny</label>
+						<input v-model="inputs.checkboxes" type="checkbox" value="Miny" id="Miny" />
+						<label for="Miny">Miny</label>
+						<input v-model="inputs.checkboxes" type="checkbox" value="mo" id="mo" />
+						<label for="mo">mo</label>		
+
+						<p>
+							<strong>Checkboxes:</strong> {{ inputs.checkboxes }}
+						</p>
+
+						<h4>Radios</h4>
+						<input v-model="inputs.radios" type="radio" value="rollout" id="rollout" />
+						<label 			
+					</div>
+				`
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>V-bind</title>
+</head>
+<body>
+
+	<div id="app">
+		hello world!
+	</div>
+
+	<!-- production version, optimized for size and speed -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				information: '<h1 style="color:#41b883; background-color: #35495e">Hello World!</h1>'
+			},
+			template: '<div><div>{{ information }}</div><div v-html="information"></div></div>'
+		});
+	</script>
+
+</body>
+</html>

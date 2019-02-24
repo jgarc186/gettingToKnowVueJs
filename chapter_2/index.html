@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello Template</title>
+</head>
+<body>
+	<!-- Vue.js DOM manipulation -->
+	<div id="app">
+		This will get replace.
+	</div>
+
+	<!-- production version, optimized for size and speed -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+	<!-- Vue.js Script -->
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				information: 'Hello world!'
+			},
+			template: '<div> {{ information }} <div>'
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mustached</title>
+</head>
+<body>
+
+	<div id="app"></div>
+
+	<!-- production version, optimized for size and speed -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				yes: 'Yes, it is!',
+				no: 'No, It is not!',
+				info: 'Hello world!'
+			},
+			template: `
+				<div>
+					<p>{{ 1 == 1 ? yes : no }}</p>
+					<p>{{ 1 >= 2 ? yes : no }}</p>
+					<p>{{ info.toUpperCase() }}</p>
+				</div>
+				`
+		});
+	</script>
+
+</body>
+</html>
