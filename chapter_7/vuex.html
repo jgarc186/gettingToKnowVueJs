@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vuex</title>
+</head>
+<body>
+	<!-- production version, optimized for size and speed -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+	<!-- Axios -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	<!-- Vue.js script -->
+	<script type="text/javascript">
+		state: {
+			ship: {},
+			ships: {
+				count: 0,
+				results: []
+			},
+			pilots: []
+		}, // End of state property.
+
+		onlyStarFighters: function(state) {
+			return state.ships.results.filter(function(){ // Return the value of the ships object in the state property, filtering the results array.
+				// Return a starship_class that is equals to Starfighter.
+				return ship.starship_class === 'Starfighter';
+			}); 
+		}, // End of onlyStartFighters()
+
+		onlyStarFightersCount: function(state, getters) {
+			// Return the length of onlystarFighters in the getters.
+			return getters.onlyStarFighters.length;
+		}, // End of onlyStarFightersCount()
+
+		setShip: function(state) {
+			return function(url) {
+				return state.ships.results.find(function(ship) {
+					return ship.url === url;
+				});
+			};
+		}, // End of setShip()
+
+		mutations: {
+			setShips: function(state, payload) {
+				state.ships = payload.newShips;
+			},
+
+			setShip: function(state, payload) {
+				state.ship = payload.newShip;
+			},
+
+			clearPilots: function(state) {
+				state.pilots = [];
+			},
+
+			addPilot: function(state, payload) {
+				state.pilots.push(payload.newPilot);
+			}
+		}, // End of mutations.
+
+		search: function(event) {
+			store.dispatch('search', {
+				searchtext: event.target.value
+			});
+		}, // End of search()
+
+		viewShip: function(url) {
+			this.$store.disptach({
+				type: 'setShip',
+				url: url
+			});
+		}, // End of viewShip()
+
+		actions: {
+			search: function(context, payload) {
+				axios
+					.get(`https://swapi.co/api/starships/?search=${payload.searchtext}`)
+					.then(response => {
+						context.commit('setShips', {
+							newShips: response.data
+						});
+					});
+			},
+
+			setShip: function(context, payload) {
+				context.commit('clearPilots');
+
+				context.commit('setShip', {
+					newShip: context.getters.setShip(payload.url)
+				});
+
+				context.dispatch('getPilots', {
+					urls: context.state.ship.pilots
+				});
+			},
+
+			getPilots: function(context, payload) {
+				payload.urls.forEach(function(url){
+					axios.get(url).then(response => {
+						context.commit('addPilot', {
+							newPilot: response.data
+						});
+					});
+				});
+			}
+		}
+
+	</script>
+
+	<!-- Vuex library -->
+	<script type="text/javascript" src="https://unpkg.com/vuex@3.1.0/dist/vuex.js"></script>
+</body>
+</html>
