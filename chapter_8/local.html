@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Local Components</title>
+</head>
+<body>
+
+	<div id="app"></div>
+
+	<!-- development version, includes helpful console warnings -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<script type="text/javascript">
+		var AppHeader = {
+			props : {
+				text: {
+					type: String,
+					default: 'App Header'
+				}
+			},
+
+			template: `
+				<h1>
+					{{ text }}
+				</h1>
+			`
+		};
+
+		var app = new Vue({
+			el: '#app',
+
+			data: {
+				appLabel: 'Ship Search'
+			},
+
+			template: `
+				<div>
+					<AppHeader />
+				</div>
+			`
+		});
+	</script>
+
+</body>
+</html>

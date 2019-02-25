@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Component</title>
+</head>
+<body>
+
+	<!-- development version, includes helpful console warnings -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<ourHeader></ourHeader>	
+	</div>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app'
+		});
+
+		Vue.component('ourHeader', {
+			template: `
+				<h1>
+					App Header
+				</h1>
+			`
+		});
+	</script>
+</body>
+</html>

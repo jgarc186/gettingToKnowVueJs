@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Data</title>
+</head>
+<body>
+
+
+	<!-- production version, optimized for size and speed -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+	<ourSecondHeader></ourSecondHeader>
+
+	<script type="text/javascript">
+		Vue.component('ourSecondHeader', {
+			data: function() {
+				return {
+					text: 'App header 2'
+				}
+			},
+
+			template: `
+				<h1 v-on:click="text = text.split(").reverse().join(")"> 
+					{{ text }}
+				</h1>
+			`
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Props</title>
+</head>
+<body>
+
+	<ourThirdHeader text="App Header 3"></ourThirdHeader>
+
+	<!-- production version, optimized for size and speed -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+	<script type="text/javascript">
+		Vue.component('ourThirdHeader', {
+			props: ['text'],
+
+			template: `
+				<h1>
+					{{text}}
+				</h1>
+			`
+		});
+	</script>
+</body>
+</html>
